@@ -10,6 +10,12 @@ class Order extends React.Component {
     removeFromOrder: PropTypes.func.isRequired,
   };
 
+  renderRemoveButton = (key) => {
+    return (
+      <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
+    );
+  };
+
   renderOrder = (key) => {
     const fish = this.props.fishes[key];
 
@@ -29,8 +35,9 @@ class Order extends React.Component {
     if (!isAvailable) {
       return (
         <CSSTransition {...transitionOptions}>
-          <li key={key}>
+          <li key={key} className="unavailable">
             Sorry {fish ? fish.name : 'fish'} is no longer available
+            {this.renderRemoveButton(key)}
           </li>
         </CSSTransition>
       );
@@ -38,7 +45,7 @@ class Order extends React.Component {
     return (
       <CSSTransition {...transitionOptions}>
         <li key={key}>
-          <span>
+          <span className="qts">
             <TransitionGroup component="span" className="count">
               <CSSTransition
                 classNames="count"
@@ -48,12 +55,11 @@ class Order extends React.Component {
                 <span>{count}</span>
               </CSSTransition>
             </TransitionGroup>
-            lbs {fish.name}
-            {formatPrice(count * fish.price)}
-            <button onClick={() => this.props.removeFromOrder(key)}>
-              &times;
-            </button>
+            lbs.
           </span>
+          <span className="name">{fish.name}</span>
+          <span className="price">{formatPrice(count * fish.price)}</span>
+          {this.renderRemoveButton(key)}
         </li>
       </CSSTransition>
     );

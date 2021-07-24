@@ -114,15 +114,18 @@ ul
 ul.order
   // Default state
   li
+    position relative
     border-bottom 1px solid black
     padding 2rem 0
     display flex
     font-size 1.4rem
-    justify-content space-between
+    justify-content start
     align-items center
     &:hover
       // padding 1rem 0
       button
+        position absolute
+        right 0
         display inline
     button
       border 0
@@ -132,15 +135,22 @@ ul.order
     &.unavailable
       text-decoration line-through
       background lighten(red, 80%)
-    .price
-      font-size 1.2rem
+    span.qts
+      margin-right 3px
     span.count
+      font-weight bold
       position relative
       overflow hidden
       float left // only works if it's floated?!
+      margin-right 1px
       span
         display inline-block
         // transition all 0.5s
+    span.name
+      flex-grow 1
+    span.price
+      font-size 1.2rem
+      margin-right 10px
 .total
   padding 2rem 0
   font-size 1.4rem
