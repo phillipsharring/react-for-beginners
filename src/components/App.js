@@ -19,7 +19,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const { params } = this.props.match;
-    console.log(params.storeId);
     const localStorageRef = localStorage.getItem(params.storeId);
 
     if (localStorageRef) {
